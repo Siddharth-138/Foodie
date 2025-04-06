@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🍽️ Food Recognition Chatbot</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 50px; }
+        input[type=file], input[type=submit] { margin: 10px; }
+        img { max-width: 300px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🍕 Food Image Recognition</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required><br>
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if filename %}
+        <h2>Uploaded Image:</h2>
+        <img src="{{ url_for('static', filename='uploads/' + filename) }}">
+    {% endif %}
+
+    {% if prediction %}
+        <h2>Prediction: {{ prediction }}</h2>
+        <p>Confidence: {{ confidence }}%</p>
+    {% endif %}
+</body>
+</html>
